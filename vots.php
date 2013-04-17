@@ -78,7 +78,7 @@ class VOTSService {
 
     public function isValid()
     {
-        if (self::$decoded['ERROR_DESC'])
+        if (self::$decoded['Status'] == "failure")
         {
             return FALSE;
         }
