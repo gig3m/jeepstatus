@@ -24,8 +24,17 @@ $app->post('/status', function () use ($app) {
     $last = $_POST['last'];
     $vin  = $_POST['vin'];
 
-    //Do something
-    $app->redirect("/status/$last/$vin/");
+    if (!$last || !$vin)
+    {
+        $data['error'] = "You didn't fill out both form fields!!??!?";
+        $app->render('error.twig', $data);  
+    }
+    else
+    {
+        //Do something
+        $app->redirect("/status/$last/$vin/");      
+    }
+
 
 });
 
