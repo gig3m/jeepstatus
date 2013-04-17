@@ -1,9 +1,12 @@
 <?php
 /**
+*  VOTS Service
+*  by Kyle Arrington (kyle@arrington.co)
 * 
-* 
-* 
-* 
+*  A JSON wrapper for checking the status of a Jeep in production
+*  
+*  Last name/Last 8 of VIN are required
+*
  */
 
 class VOTSService {
