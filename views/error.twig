@@ -1,0 +1,30 @@
+{% extends "application.twig" %}
+	
+{% block container %}
+
+<div class="six columns offset-by-five">
+	<p>
+		<strong>Something went wrong! :(</strong><br>
+		Respose: {{error}}
+	</p>
+
+	<p>
+		<strong>Huh?</strong><br>
+		This could mean a few things.  Either 1) Your jeep is not in the system, 2) you mistyped something, or 3) VOTS is having a fit.  In any case, check your information and try again.
+	</p>
+
+	<p>
+		<strong>VONs</strong><br>
+		Also, please note this service is not accepting VONs currently.  Your vin is required (which should indicate that VOTS knows about your Jeep).
+	</p>
+
+	<p>
+		<strong>If you're sure...</strong><br>
+		You can still bookmark this page.  If the information is correct and we start getting a different response, it will show up at this same link.
+	</p>
+
+</div>
+
+
+	
+{% endblock container %}

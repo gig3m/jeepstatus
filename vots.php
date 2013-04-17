@@ -56,11 +56,7 @@ class VOTSService {
         $this->vin = $vin;
         self::$decoded = NULL;
 
-        if ($this->getJSON() != TRUE)
-        {
-            print self::$decoded['ERROR_DESC'];
-            exit;
-        }
+        $this->getJSON();
     }
 
     public function getJSON()
@@ -76,13 +72,19 @@ class VOTSService {
 
         self::$decoded =  json_decode($response, TRUE);
 
-        if (self::$decoded['Status'] == 'SUCCESS')
+        return TRUE;   
+
+    }
+
+    public function isValid()
+    {
+        if (self::$decoded['ERROR_DESC'])
         {
-            return TRUE;   
+            return FALSE;
         }
         else
         {
-            return FALSE; 
+            return TRUE;
         }
     }
 
@@ -101,6 +103,10 @@ class VOTSService {
         return ucwords($this->codes[self::$decoded['StatusDetails']['cStatus']]);
     }
 
+    public function getError()
+    {
+        return self::$decoded['ERROR_DESC'];
+    }
 
 
 

@@ -33,14 +33,24 @@ $app->post('/status', function () use ($app) {
 $app->get('/status/:last/:vin/', function ($last, $vin) use ($app) {
 
     $jeep = new VOTSService($last, $vin);
-    $data = [
-        'statusCode' => $jeep->getStatusCode(),
-        'statusDesc' => $jeep->getStatusDesc(),
-        'statusExplanation' => $jeep->getStatusExplanation()
-    ];
+    if ($jeep->isValid())
+    {
+        $data = [
+            'statusCode' => $jeep->getStatusCode(),
+            'statusDesc' => $jeep->getStatusDesc(),
+            'statusExplanation' => $jeep->getStatusExplanation()
+        ];
 
-    //Do something
-    $app->render('response.twig', $data);
+        //Do something
+        $app->render('response.twig', $data);
+    }
+    else
+    {
+        $data = [
+            'error' => $jeep->getError()
+        ];
+        $app->render('error.twig', $data);        
+    }
 
 });
 
