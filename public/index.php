@@ -21,8 +21,8 @@ $app->view(new \Slim\Extras\Views\Twig());
 //Redirect POST to get URL for bookmarking
 $app->post('/status', function () use ($app) {
 
-    $last = $_POST['last'];
-    $vin  = $_POST['vin'];
+    $last = trim($_POST['last']);
+    $vin  = trim($_POST['vin']);
 
     if (!$last || !$vin)
     {
