@@ -8,6 +8,18 @@ Jeepstatus.com will report to you the status of a Jeep whose information is foun
 
 Chrysler's VOTS relies on asyncronous calls to an address that returns an invalid, but close, JSON response.  By highjacking the async call and performing a lookup on an array, we can get a more specific explanation of where the vehicle is actually reported as being.
 
+This repository more specifically runs on (taken from the composer.json file):
+
+``` json
+{
+    "name": "jeepsomething",
+    "require": {
+        "slim/slim": "2.*",
+        "slim/extras": "*",
+        "twig/twig": "*"
+    }
+}
+```
 ### Warranty
 
 There is none.  Use this tool at your own peril.  All actual information (save the lookup table) comes directly from Chrysler.  Here be dragons.
