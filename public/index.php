@@ -35,20 +35,20 @@ $app->get('/status/:last/:vin/', function ($last, $vin) use ($app) {
     $jeep = new VOTSService($last, $vin);
     if ($jeep->isValid())
     {
-        $data = [
+        $data = array(
             'statusCode' => $jeep->getStatusCode(),
             'statusDesc' => $jeep->getStatusDesc(),
             'statusExplanation' => $jeep->getStatusExplanation()
-        ];
+        );
 
         //Do something
         $app->render('response.twig', $data);
     }
     else
     {
-        $data = [
+        $data = array(
             'error' => $jeep->getError()
-        ];
+        );
         $app->render('error.twig', $data);        
     }
 
