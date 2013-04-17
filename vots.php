@@ -12,7 +12,7 @@ class VOTSService {
         public $vin;
         public static $decoded;
 
-        private $codes = [
+        private $codes = array(
             "BB"   => "review by fleet department",
             "BD"   => "special equipment processing",
             "BE"   => "edit error",
@@ -47,7 +47,7 @@ class VOTSService {
             "KZU"  => "second rail arrival",
             "KZX"  => "delivered to dealer",
             "ZA"   => "canceled",
-        ];
+        );
 
 
     public function __construct($lastname, $vin)
