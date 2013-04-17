@@ -21,7 +21,7 @@ class VOTSService {
             "BX"   => "passed edit available for schedule",
             "C"    => "sub firm",
             "D"    => "firm schedule - dealer has allocation and all parts available",
-            "D"    => "1 gateline schedule - scheduled to be built",
+            "D1"    => "gateline schedule - scheduled to be built",
             "E"    => "frame",
             "F"    => "paint",
             "G"    => "trim",
@@ -100,7 +100,7 @@ class VOTSService {
 
     public function getStatusExplanation()
     {
-        return ucwords($this->codes[self::$decoded['StatusDetails']['cStatus']]);
+        return ucwords($this->codes[trim(self::$decoded['StatusDetails']['cStatus'])]);
     }
 
     public function getError()
