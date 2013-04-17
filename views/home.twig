@@ -1,0 +1,16 @@
+{% extends "application.twig" %}
+	
+{% block container %}
+
+<div class="six columns offset-by-five">
+	<form action="/status" method="post" name="getStatus">
+	    <h4>Enter your details...</h4>
+		<fieldset>
+			<input name="last" type="text" placeholder="Last Name...">
+			<input name="vin" type="text" placeholder="VIN...">
+			<button type="submit">Submit</button>
+		</fieldset>
+	</form>
+</div>
+
+{% endblock container %}

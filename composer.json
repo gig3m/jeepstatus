@@ -1,0 +1,8 @@
+{
+    "name": "jeepsomething",
+    "require": {
+        "slim/slim": "2.*",
+        "slim/extras": "*",
+        "twig/twig": "*"
+    }
+}

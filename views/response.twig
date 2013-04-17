@@ -1,0 +1,22 @@
+{% extends "application.twig" %}
+	
+{% block container %}
+
+<div class="six columns offset-by-five">
+	<dl>
+		<dt>Code:</dt>
+		<dd>{{statusCode}}</dd>
+	</dl>
+	<dl>
+		<dt>Desription:</dt>
+		<dd>{{statusDesc}}</dd>
+	</dl>
+	<dl>
+		<dt>Explanation:</dt>
+		<dd>{{statusExplanation}}</dd>
+	</dl>
+</div>
+
+
+	
+{% endblock container %}

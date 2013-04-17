@@ -1,0 +1,11 @@
+dl {
+	overflow:hidden;
+}
+dt {
+	margin-right: 10px;
+
+}
+dd {
+	margin: 10px 0 10px 0;
+	font-size: 24pt;
+}
