@@ -64,7 +64,8 @@ class VOTSService {
 
     public function getJSON()
     {
-        $lastname = $this->lastname;
+        //replace a space with +, as Chrysler expects
+        $lastname = preg_replace("/ /","+",$this->lastname);
         $vin = $this->vin;
 
         // Get VOTS Servlet

@@ -32,7 +32,7 @@ $app->post('/status', function () use ($app) {
     else
     {
         //Remove whitespace, take last 8 for people that can't read
-        $last = trim($last);
+        $last = preg_replace("/ /","+",trim($last));
         $vin  = substr(trim($vin), -8);
 
         //Do something
