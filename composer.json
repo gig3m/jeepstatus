@@ -1,5 +1,5 @@
 {
-    "name": "jeepsomething",
+    "name": "jeepstatus",
     "require": {
         "slim/slim": "2.*",
         "slim/extras": "*",

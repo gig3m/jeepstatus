@@ -1,0 +1,26 @@
+{% extends "application.twig" %}
+	
+{% block container %}
+
+<div class="six columns offset-by-five">
+	<p>
+		<strong>Changelog</strong>
+	</p>
+
+	<p>
+		<strong>0.2</strong><br>
+		52 times a day is a lot <br>
+		Not wanting to bombard Chrysler's VOTS service every 5 minutes from the same address, implemented a redis server to cache the json result for 20 minutes.  The interval does not grow or shrink depending on how many times you hit the url.  20 minutes.  Go drink a coffee or beer or something.
+	</p>
+
+	<p>
+		<strong>0.1</strong><br>
+		Initial Creation: <br>
+		JeepStatus is born from the exhaustion of looking at JSON backend code provided by Chrysler than doesn't actually show all the information they are providing.  By coupling the actual data response with a dealer provdied list (available on many jeep websites) we can cross refence and get a better description of where the vehicle actually is.
+	</p>
+
+</div>
+
+
+	
+{% endblock container %}

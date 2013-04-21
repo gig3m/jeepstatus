@@ -104,6 +104,14 @@ $app->get('/status/:last/:vin/', function ($last, $vin) use ($app) {
 
 });
 
+// // Changelog
+$app->get('/changelog', function () use ($app) {
+
+    //Do something
+    $app->render('changelog.twig');
+
+});
+
 // // Home
 $app->get('/', function () use ($app) {
 
