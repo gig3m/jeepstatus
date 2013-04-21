@@ -53,17 +53,19 @@ class VOTSService {
         );
 
 
-    public function __construct($lastname, $vin)
+    public function __construct($json = NULL)
     {
-        $this->lastname = $lastname;
-        $this->vin = $vin;
-        self::$decoded = NULL;
 
-        $this->getJSON();
+        self::$decoded = $json;
+
     }
 
-    public function getJSON()
+    public function getJSON($lastname, $vin)
     {
+        //set our variables
+        $this->lastname = $lastname;
+        $this->vin = $vin;
+
         //replace a space with +, as Chrysler expects
         $lastname = preg_replace("/ /","+",$this->lastname);
         $vin = $this->vin;

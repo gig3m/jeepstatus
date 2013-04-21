@@ -3,6 +3,7 @@
     "require": {
         "slim/slim": "2.*",
         "slim/extras": "*",
-        "twig/twig": "*"
+        "twig/twig": "*",
+        "predis/predis": "0.8.*@dev"
     }
 }

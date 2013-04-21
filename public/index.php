@@ -2,6 +2,8 @@
 require '../vendor/autoload.php';
 require '../vots.php';
 
+$redis = new Predis\Client();
+
 ////////////////////////
 // Setup
 ////////////////////////
@@ -13,6 +15,10 @@ $app = new \Slim\Slim(array(
 
 //Twig hates the config array above
 $app->view(new \Slim\Extras\Views\Twig());
+
+//Do Dependancy Injection
+$env = $app->environment();
+$env['redis'] = $redis;
 
 ////////////////////////
 // Routes
@@ -45,9 +51,17 @@ $app->post('/status', function () use ($app) {
 //Status 
 $app->get('/status/:last/:vin/', function ($last, $vin) use ($app) {
 
-    $jeep = new VOTSService($last, $vin);
-    if ($jeep->isValid())
+    //Get environment and DI
+    $env = $app->environment();
+    $redis = $env['redis'];
+
+    //Check redis cache for record
+    if ($cached = $redis->get($vin))
     {
+        //decode redis/JSON and pass it to VOTS class
+        $jeep = new VOTSService(json_decode($cached, TRUE));
+
+
         $data = array(
             'statusCode' => $jeep->getStatusCode(),
             'statusDesc' => $jeep->getStatusDesc(),
@@ -57,12 +71,35 @@ $app->get('/status/:last/:vin/', function ($last, $vin) use ($app) {
         //Do something
         $app->render('response.twig', $data);
     }
-    else
+
+    //redis has no key, lets go fetch Chrysler's response
+    else 
     {
-        $data = array(
-            'error' => $jeep->getError()
-        );
-        $app->render('error.twig', $data);        
+        $jeep = new VOTSService();
+        $jeep->getJSON($last, $vin);
+        if ($jeep->isValid())
+        {
+            $data = array(
+                'statusCode' => $jeep->getStatusCode(),
+                'statusDesc' => $jeep->getStatusDesc(),
+                'statusExplanation' => $jeep->getStatusExplanation()
+            );
+
+            //put json into redis on key=vin for caching
+            $redis->set($vin, json_encode($jeep::$decoded));
+            $redis->expire($vin,60*20); //cache for 20 minutes
+
+            //Do something
+            $app->render('response.twig', $data);
+        }
+        else
+        {
+            //set an error message to display, courtesy of Chrysler
+            $data = array(
+                'error' => $jeep->getError()
+            );
+            $app->render('error.twig', $data);        
+        }
     }
 
 });
