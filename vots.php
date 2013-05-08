@@ -64,7 +64,7 @@ class VOTSService {
     {
         //set our variables
         $this->lastname = $lastname;
-        $this->vin = $vin;
+        $this->vin = substr(trim($vin), -8);
 
         //replace a space with +, as Chrysler expects
         $lastname = preg_replace("/ /","+",$this->lastname);
