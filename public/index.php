@@ -51,7 +51,7 @@ $app->post('/status', function () use ($app) {
 //Status 
 $app->get('/status/:last/:vin/', function ($last, $vin) use ($app) {
 
-    $app->redirect("/home/");  
+    $app->redirect("/");  
 
     // //Get environment and DI
     // $env = $app->environment();
