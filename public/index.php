@@ -104,7 +104,33 @@ $app->get('/status/:last/:vin/', function ($last, $vin) use ($app) {
 
 });
 
-// // Changelog
+// Debug Decoded
+$app->get('/debug/:last/:vin/', function ($last, $vin) use ($app) {
+
+    $jeep = new VOTSService();
+    $jeep->getJSON($last, $vin);
+    if ($jeep->isValid())
+    {
+        $data = array(
+            'JSON' => $jeep::$decoded
+        );
+
+        //Do something
+        $app->render('debug.twig', $data);
+    }
+    else
+    {
+        //set an error message to display, courtesy of Chrysler
+        $data = array(
+            'error' => $jeep->getError()
+        );
+        $app->render('error.twig', $data);        
+    }
+});
+
+
+
+// Changelog
 $app->get('/changelog', function () use ($app) {
 
     //Do something
@@ -112,7 +138,7 @@ $app->get('/changelog', function () use ($app) {
 
 });
 
-// // Home
+// Home
 $app->get('/', function () use ($app) {
 
     //Do something
