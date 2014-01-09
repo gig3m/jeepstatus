@@ -14,6 +14,7 @@ class VOTSService {
         public $lastname;
         public $vin;
         public static $decoded;
+        public static $raw;
 
         private $codes = array(
             "BB"   => "review by fleet department",
@@ -58,6 +59,7 @@ class VOTSService {
 
         self::$decoded = $json;
 
+
     }
 
     public function getJSON($lastname, $vin)
@@ -72,6 +74,9 @@ class VOTSService {
 
         // Get VOTS Servlet
         $response = file_get_contents("https://www.jeep.com/vots/VOTSServlet?firstName=&lastName=$lastname&vin_last8=$vin&service=json");
+
+        // Save the raw response for debug
+        $raw = $response;
 
         //trim the crap off the front and back, wrapped in votsservice()
         $response = rtrim(ltrim($response, "votsservice("), ")");
