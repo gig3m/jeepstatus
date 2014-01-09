@@ -106,7 +106,8 @@ class VOTSService {
 
     public function getStatusExplanation()
     {
-        return ucwords($this->codes[trim(self::$decoded['StatusDetails']['cStatus'])]);
+        return "";
+        //return ucwords($this->codes[trim(self::$decoded['StatusDetails']['cStatus'])]);
     }
 
     public function getError()
