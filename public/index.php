@@ -112,7 +112,7 @@ $app->get('/debug/:last/:vin/', function ($last, $vin) use ($app) {
     if ($jeep->isValid())
     {
         $data = array(
-            'JSON' => json_encode($jeep::$decoded)
+            'JSON' => $jeep::$raw
         );
 
         //Do something
